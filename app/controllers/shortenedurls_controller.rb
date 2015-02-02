@@ -46,16 +46,27 @@ class ShortenedurlsController < ApplicationController
     redirectTarget = Shortenedurl.where(shortened: params["id"]).first
 
     unless redirectTarget.nil?
-      redirect_to redirectTarget.original.to_s
+      uri = URI(redirectTarget.original.to_s)
+
+      #Jos annetusta linkistä puuttuu "http://"
+      if (uri.scheme.nil?)
+        redirect_to 'http://' + redirectTarget.original.to_s
+      else
+        redirect_to redirectTarget.original.to_s
+      end
     else
       raise ActionController::RoutingError.new('Not Found')
     end
 
   end
 
+
   private
   # Sallitaan ainoastaan "link" parametri
   def shortenedurl_params
     params.permit(:link)
   end
+
 end
+
+
