@@ -39,6 +39,7 @@ class ShortenedurlsController < ApplicationController
         @shortened = "Unknown error occurred"
       end
     end
+
   end
 
   def show
