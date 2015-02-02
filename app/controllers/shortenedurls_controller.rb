@@ -30,10 +30,9 @@ class ShortenedurlsController < ApplicationController
       while Shortenedurl.exists?(:shortened => editedParams["shortened"]) #Todo, jos generoitu merkkijono löytyy kannasta vaikka 3 kertaa putkeen, niin kasvatetaan pituutta yhdellä
         editedParams["shortened"] = generateRandomSequence
       end
-
-
       #Luodaan ja tallennetaan uusi shortenedUrl annettujen tietojen pohjalta, ja asetetaan näkymälle tarvittavat tiedot
       @shortenedurl = Shortenedurl.new(editedParams)
+
       if @shortenedurl.save
         @shortened = editedParams["shortened"]
       else
@@ -47,7 +46,6 @@ class ShortenedurlsController < ApplicationController
 
     unless redirectTarget.nil?
       uri = URI(redirectTarget.original.to_s)
-
       #Jos annetusta linkistä puuttuu "http://"
       if (uri.scheme.nil?)
         redirect_to 'http://' + redirectTarget.original.to_s
@@ -57,7 +55,6 @@ class ShortenedurlsController < ApplicationController
     else
       raise ActionController::RoutingError.new('Not Found')
     end
-
   end
 
 
