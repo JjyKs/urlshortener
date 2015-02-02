@@ -1,28 +1,12 @@
-== README
+Simple URL Shortener made with RoR
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+API includes 
+POST /shorten
+Parameters: Parameter link should contain the link to shorten.
+Returns: Id for the shortened link in text/plain format.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+GET /{id}
+Returns: 301 redirects the user agent to a previously stored URL. 404 error if no link stored with given id.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+https://jjyks-url-shortener.herokuapp.com
