@@ -42,7 +42,6 @@ class ShortenedurlsController < ApplicationController
     redirectTarget = Shortenedurl.where(shortened: params["id"]).first
 
     unless redirectTarget.nil?
-      byebug
       redirect_to redirectTarget.original.to_s
     else
       raise ActionController::RoutingError.new('Not Found')
