@@ -1,0 +1,2 @@
+module ShortenedurlsHelper
+end
