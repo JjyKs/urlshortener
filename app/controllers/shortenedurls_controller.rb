@@ -7,26 +7,30 @@ class ShortenedurlsController < ApplicationController
 
 
   # GET /shortenedurls
-  # GET /shortenedurls.json
   def index
     @shortenedurls = Shortenedurl.all
   end
 
+  # Root
+  # GET /shortenedurls#frontpage
+  def frontpage
+  end
+
   # POST /shortenedurls
   def shorten
-    #Asetetaan editedParamsiin alkuperäinen parametri, ja random merkkijono
+    allShortenedUrls = Shortenedurl.all
     editedParams = {"original" => params["link"], "shortened" => generateRandomSequence}
 
     #Jos kohdelinkki on jo olemassa
-    if Shortenedurl.exists?(:original => params["link"])
+    if allShortenedUrls.exists?(:original => params["link"])
       #Haetaan vanha lyhennys kannasta näkymää varten
-      @shortened = Shortenedurl.where(original: params["link"]).first.shortened
+      @shortened = allShortenedUrls.where(original: params["link"]).first.shortened
     else
-
       #Jos generoitu merkkijono on jo käytössä luodaan uusi
       while Shortenedurl.exists?(:shortened => editedParams["shortened"]) #Todo, jos generoitu merkkijono löytyy kannasta vaikka 3 kertaa putkeen, niin kasvatetaan pituutta yhdellä
         editedParams["shortened"] = generateRandomSequence
       end
+
 
       #Luodaan ja tallennetaan uusi shortenedUrl annettujen tietojen pohjalta, ja asetetaan näkymälle tarvittavat tiedot
       @shortenedurl = Shortenedurl.new(editedParams)
