@@ -1,4 +1,4 @@
-<h1>Listing shortenedurls</h1>
+<h1>All shortened urls</h1>
 
 <table>
   <thead>
@@ -14,9 +14,6 @@
       <tr>
         <td><%= shortenedurl.original %></td>
         <td><%= shortenedurl.shortened %></td>
-        <td><%= link_to 'Show', shortenedurl %></td>
-        <td><%= link_to 'Edit', edit_shortenedurl_path(shortenedurl) %></td>
-        <td><%= link_to 'Destroy', shortenedurl, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +21,3 @@
 
 <br>
 
-<%= link_to 'New Shortenedurl', new_shortenedurl_path %>
